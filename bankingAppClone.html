@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banking App Clone</title>
+    <script src="https://ajax.aspnetcdn.com/ajax/knockout/knockout-3.1.0.js" type="text/javascript"></script>
+    <!-- Include Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        .header {
+            background-color: #701E7D; 
+            color: white;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header h1 {
+            margin: 0;
+        }
+
+        .header-icons {
+            display: flex;
+        }
+
+        .header-icons i {
+            font-size: 20px;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+
+        /* Body Styles */
+        body {
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden; /* Prevent horizontal scroll */
+            display: flex;
+            min-height: 100vh;
+            flex-direction: column; /* Stack children vertically */
+        }
+
+        .black-section {
+            background-color: black;
+            height: 30%; /* 30% of the viewport height */
+            flex: 0 0 auto; /* Don't grow, don't shrink, stay at initial height */
+            position: relative; /* Required for positioning the box */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .box {
+            background-color: #FAFAFA;
+            width: 85%; /* Adjust width as needed */
+            height: 60%; /* Adjust height as needed */
+            text-align: center;
+            padding: 10px;
+            border-radius: 10px;
+            position: relative;
+            bottom: -20px;
+            flex: 0 0 auto;
+            display: flex;
+            z-index: 9999;
+            flex-direction: column; /* Stack children vertically */
+            justify-content: space-between; /* Distribute space evenly */
+        }
+
+        .white-section {
+            background-color: #FAFAFA;
+            height: 70%; 
+            flex: 1; 
+            overflow: hidden; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .refresh-icon {
+            cursor: pointer;
+            color: #701E7D;
+            margin-left: auto; /* Push to rightmost side */
+        }
+
+        .text-sentence {
+            margin-top: 5px; /* Add margin to separate text sentences */
+        }
+
+        .show-balance-button {
+            background-color: #f0f0f0;
+            font-family: Roboto;
+            margin-top: 10px;
+            /* font-style: normal; */
+            font-weight: bold;
+            font-size: 1.4rem;
+            line-height: 1.5rem;
+            color: #219653 !important;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .purple-box {
+            background-color: #701E7D;
+            width: 170px;
+            height: 50px;
+            margin-top: 10px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 5px;
+        }
+
+        .purple-box p {
+            color: #FFFFFF;
+            text-align: center;
+            font-family: Roboto;
+            font-style: normal;
+            font-size: 4vw;
+            margin: 0;
+        }
+
+        .share-icon {
+            margin-right: 5px;
+            color: #FFFFFF;
+        }
+
+        .white-box-container {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+        }
+
+        .white-box {
+            background-color: #FFFFFF;
+            width: 100px;
+            height: 50px;
+            margin: 10px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #ccc; /* Add border for visibility */
+        }
+
+        .footer {
+            background-color: #FFFFFF;
+            display: flex;
+            justify-content: space-around;
+            padding: 10px;
+        }
+
+        .footer-icon {
+            font-size: 4vw; 
+           margin-left: 20px;
+            color: #701E7D;
+        }
+
+        .footer-icon1 {
+            font-size: 4vw; 
+           margin-left: 15px;
+            color: #701E7D;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-icons">
+            <i class="fas fa-bars"></i> 
+        </div>
+        <h1>Meezan Bank</h1>
+        <div class="header-icons">
+            <i class="fas fa-power-off"></i> <!-- Assuming you have font awesome for logout icon -->
+        </div>
+    </div>
+
+    <div class="black-section">
+        <div class="box">
+            <div style="display: flex; align-items: center;">
+                <div style="color: #701E7D; font-family:'Times New Roman', Times, serif; font-size: large; font-weight: bold;">MYACCOUNT</div> <!-- Left side -->
+                <i class="fas fa-sync-alt refresh-icon"></i> <!-- Right side -->
+            </div>
+            <div style="text-align: left; font-family: Roboto;
+            font-style: normal;
+            font-size: 4vw;
+            color: #121212; "><strong>Saving Account:</strong> xxxx xxxxxxxx0036</div> <!-- First text sentence -->
+            <div style="text-align: left; font-family: Roboto;
+            font-style: normal;
+            font-size: 4vw;
+            color: #121212; "><strong>IBAN:</strong> PK80 MEZN 0051 5601 0165 6101</div> <!-- Second text sentence -->
+            <button id="balanceBtn" class="show-balance-button" onclick="toggleBalance()">SHOW BALANCE</button> <!-- Show Balance button -->
+            <div id="balance" style="display: none; font-family: Roboto;
+            font-style: normal;
+            font-size: 3vw;
+            color: #121212; "></div> <!-- Balance -->
+            <div style="display: flex; justify-content: space-between;">
+                <div class="purple-box">
+                    <i class="fas fa-share-alt share-icon"></i>
+                    <p>Share A/C Details</p>
+                </div>
+                <div class="purple-box">
+                    <i class="fas fa-book share-icon"></i>
+                    <p>View Statement</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="white-section">
+        
+    </div>
+    
+    <div class="footer">
+        <div style="align-items: right;">
+            <i class="fas fa-map-marker-alt footer-icon"></i>
+            <p><strong>Locate Us</strong></p>
+        </div>
+        <div>
+            <i class="fas fa-phone-alt footer-icon"></i>
+            <p class="align-items: left"><strong>Contact Us</strong></p>
+        </div>
+        <div>
+            <i class="fas fa-money-check-alt footer-icon1"></i>
+            <p><strong>Pay Us</strong></p>
+        </div>
+    </div>
+
+    <script>
+        let balanceVisible = false;
+
+        function toggleBalance() {
+            const balanceDiv = document.getElementById("balance");
+            balanceVisible = !balanceVisible;
+            const balanceBtn = document.getElementById("balanceBtn");
+            if (balanceVisible) {
+                balanceDiv.style.display = "block";
+                balanceBtn.textContent = "Rs 150,000,123";
+            } else {
+                balanceDiv.style.display = "none";
+                balanceBtn.textContent = "SHOW BALANCE";
+            }
+        }
+    </script>
+</body>
+</html>
