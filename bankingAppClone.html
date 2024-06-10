@@ -75,6 +75,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            margin-bottom: 5%;
         }
         
         .refresh-icon {
@@ -129,22 +130,45 @@
         }
 
         .white-box-container {
-            display: flex;
-            justify-content: space-around;
-            width: 100%;
+            display: grid;
+            width: 90%;
+            margin-top: 10px;
+            grid-template-columns: repeat(2, 1fr); /* 2 columns */
+            grid-template-rows: repeat(5, 1fr); /* 5 rows */
+            gap: 20px; /* Add some space between boxes */
+            justify-items: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+            margin-top: 4%;
         }
 
         .white-box {
             background-color: #FFFFFF;
-            width: 100px;
-            height: 50px;
-            margin: 10px;
+            width: 100%; /* Adjust width as needed */
+            height: 100px; /* Adjust height as needed */
             border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
             border: 1px solid #ccc; /* Add border for visibility */
+            cursor: pointer;
         }
+
+        .white-box i {
+    font-size: 30px; /* Icon size */
+    margin-bottom: 5px; /* Spacing between icon and text */
+    color: #701E7D;
+    padding: 5%;
+    overflow: hidden;
+}
+
+.white-box p {
+    margin: 0;
+    font-family: Arial, sans-serif; /* Font family for text */
+    font-size: 24px; /* Font size for text */
+    color: #333;
+    overflow: auto;
+    padding: auto; /* Text color */
+}
 
         .footer {
             background-color: #FFFFFF;
@@ -164,7 +188,6 @@
            margin-left: 15px;
             color: #701E7D;
         }
-
     </style>
 </head>
 <body>
@@ -211,10 +234,58 @@
     </div>
     
     <div class="white-section">
-        
+        <div class="white-box-container">
+            <!-- First Line -->
+            <div class="white-box">
+                <i class="fas fa-money-check-alt"></i>
+                <p>Deposit</p>
+            </div>
+            <div class="white-box"  >
+                <i class="fas fa-money-bill-wave-alt"></i>
+                <p>Withdraw</p>
+            </div>
+            <!-- Second Line -->
+            <div class="white-box">
+                <i class="fas fa-exchange-alt"></i>
+                <p>Transfer</p>
+            </div>
+            <div class="white-box">
+                <i class="fas fa-chart-line"></i>
+                <p>Invest</p>
+            </div>
+            <!-- Third Line -->
+            <div class="white-box">
+                <i class="fas fa-file-invoice-dollar"></i>
+                <p>Bills</p>
+            </div>
+            <div class="white-box">
+                <i class="fas fa-credit-card"></i>
+                <p>Card</p>
+            </div>
+            <!-- Fourth Line -->
+            <div class="white-box">
+                <i class="fas fa-sync-alt"></i>
+                <p>Pay Now</p>
+            </div>
+            <div class="white-box">
+                <i class="fas fa-award"></i>
+                <p>Rewards</p>
+            </div>
+            <!-- Fifth Line -->
+            <div class="white-box">
+                <i class="fas fa-university"></i>
+                <p>Loans</p>
+            </div>
+            <div class="white-box">
+                <i class="fas fa-hand-holding-usd"></i>
+                <p>Statement</p>
+            </div>
+            
+        </div>
     </div>
     
-    <div class="footer">
+    
+    <!-- <div class="footer">
         <div style="align-items: right;">
             <i class="fas fa-map-marker-alt footer-icon"></i>
             <p><strong>Locate Us</strong></p>
@@ -227,7 +298,7 @@
             <i class="fas fa-money-check-alt footer-icon1"></i>
             <p><strong>Pay Us</strong></p>
         </div>
-    </div>
+    </div> -->
 
     <script>
         let balanceVisible = false;
@@ -244,6 +315,11 @@
                 balanceBtn.textContent = "SHOW BALANCE";
             }
         }
+
+        function boxClicked(boxNumber) {
+            alert("Box " + boxNumber + " clicked!");
+        }
+
     </script>
 </body>
 </html>
