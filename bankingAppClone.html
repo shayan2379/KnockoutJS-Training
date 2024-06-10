@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,7 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
         .header {
-            background-color: #701E7D; 
+            background-color: #701E7D;
             color: white;
             padding: 10px;
             display: flex;
@@ -35,17 +36,22 @@
         body {
             margin: 0;
             padding: 0;
-            overflow-x: hidden; /* Prevent horizontal scroll */
+            overflow-x: hidden;
+            /* Prevent horizontal scroll */
             display: flex;
             min-height: 100vh;
-            flex-direction: column; /* Stack children vertically */
+            flex-direction: column;
+            /* Stack children vertically */
         }
 
         .black-section {
             background-color: black;
-            height: 30%; /* 30% of the viewport height */
-            flex: 0 0 auto; /* Don't grow, don't shrink, stay at initial height */
-            position: relative; /* Required for positioning the box */
+            height: 30%;
+            /* 30% of the viewport height */
+            flex: 0 0 auto;
+            /* Don't grow, don't shrink, stay at initial height */
+            position: relative;
+            /* Required for positioning the box */
             display: flex;
             justify-content: center;
             align-items: center;
@@ -53,8 +59,10 @@
 
         .box {
             background-color: #FAFAFA;
-            width: 85%; /* Adjust width as needed */
-            height: 60%; /* Adjust height as needed */
+            width: 85%;
+            /* Adjust width as needed */
+            height: 60%;
+            /* Adjust height as needed */
             text-align: center;
             padding: 10px;
             border-radius: 10px;
@@ -63,29 +71,33 @@
             flex: 0 0 auto;
             display: flex;
             z-index: 9999;
-            flex-direction: column; /* Stack children vertically */
-            justify-content: space-between; /* Distribute space evenly */
+            flex-direction: column;
+            /* Stack children vertically */
+            justify-content: space-between;
+            /* Distribute space evenly */
         }
 
         .white-section {
             background-color: #FAFAFA;
-            height: 70%; 
-            flex: 1; 
-            overflow: hidden; 
+            height: 70%;
+            flex: 1;
+            overflow: hidden;
             display: flex;
             justify-content: center;
             align-items: center;
             margin-bottom: 5%;
         }
-        
+
         .refresh-icon {
             cursor: pointer;
             color: #701E7D;
-            margin-left: auto; /* Push to rightmost side */
+            margin-left: auto;
+            /* Push to rightmost side */
         }
 
         .text-sentence {
-            margin-top: 5px; /* Add margin to separate text sentences */
+            margin-top: 5px;
+            /* Add margin to separate text sentences */
         }
 
         .show-balance-button {
@@ -133,42 +145,55 @@
             display: grid;
             width: 90%;
             margin-top: 10px;
-            grid-template-columns: repeat(2, 1fr); /* 2 columns */
-            grid-template-rows: repeat(5, 1fr); /* 5 rows */
-            gap: 20px; /* Add some space between boxes */
-            justify-items: center; /* Center horizontally */
-            align-items: center; /* Center vertically */
+            grid-template-columns: repeat(2, 1fr);
+            /* 2 columns */
+            grid-template-rows: repeat(5, 1fr);
+            /* 5 rows */
+            gap: 20px;
+            /* Add some space between boxes */
+            justify-items: center;
+            /* Center horizontally */
+            align-items: center;
+            /* Center vertically */
             margin-top: 4%;
         }
 
         .white-box {
             background-color: #FFFFFF;
-            width: 100%; /* Adjust width as needed */
-            height: 100px; /* Adjust height as needed */
+            width: 100%;
+            /* Adjust width as needed */
+            height: 100px;
+            /* Adjust height as needed */
             border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            border: 1px solid #ccc; /* Add border for visibility */
+            border: 1px solid #ccc;
+            /* Add border for visibility */
             cursor: pointer;
         }
 
         .white-box i {
-    font-size: 30px; /* Icon size */
-    margin-bottom: 5px; /* Spacing between icon and text */
-    color: #701E7D;
-    padding: 5%;
-    overflow: hidden;
-}
+            font-size: 30px;
+            /* Icon size */
+            margin-bottom: 5px;
+            /* Spacing between icon and text */
+            color: #701E7D;
+            padding: 5%;
+            overflow: hidden;
+        }
 
-.white-box p {
-    margin: 0;
-    font-family: Arial, sans-serif; /* Font family for text */
-    font-size: 24px; /* Font size for text */
-    color: #333;
-    overflow: auto;
-    padding: auto; /* Text color */
-}
+        .white-box p {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            /* Font family for text */
+            font-size: 24px;
+            /* Font size for text */
+            color: #333;
+            overflow: auto;
+            padding: auto;
+            /* Text color */
+        }
 
         .footer {
             background-color: #FFFFFF;
@@ -178,22 +203,23 @@
         }
 
         .footer-icon {
-            font-size: 4vw; 
-           margin-left: 20px;
+            font-size: 4vw;
+            margin-left: 20px;
             color: #701E7D;
         }
 
         .footer-icon1 {
-            font-size: 4vw; 
-           margin-left: 15px;
+            font-size: 4vw;
+            margin-left: 15px;
             color: #701E7D;
         }
     </style>
 </head>
+
 <body>
     <div class="header">
         <div class="header-icons">
-            <i class="fas fa-bars"></i> 
+            <i class="fas fa-bars"></i>
         </div>
         <h1>Meezan Bank</h1>
         <div class="header-icons">
@@ -204,7 +230,9 @@
     <div class="black-section">
         <div class="box">
             <div style="display: flex; align-items: center;">
-                <div style="color: #701E7D; font-family:'Times New Roman', Times, serif; font-size: large; font-weight: bold;">MYACCOUNT</div> <!-- Left side -->
+                <div
+                    style="color: #701E7D; font-family:'Times New Roman', Times, serif; font-size: large; font-weight: bold;">
+                    MYACCOUNT</div> <!-- Left side -->
                 <i class="fas fa-sync-alt refresh-icon"></i> <!-- Right side -->
             </div>
             <div style="text-align: left; font-family: Roboto;
@@ -215,7 +243,8 @@
             font-style: normal;
             font-size: 4vw;
             color: #121212; "><strong>IBAN:</strong> PK80 MEZN 0051 5601 0165 6101</div> <!-- Second text sentence -->
-            <button id="balanceBtn" class="show-balance-button" onclick="toggleBalance()">SHOW BALANCE</button> <!-- Show Balance button -->
+            <button id="balanceBtn" class="show-balance-button" onclick="toggleBalance()">SHOW BALANCE</button>
+            <!-- Show Balance button -->
             <div id="balance" style="display: none; font-family: Roboto;
             font-style: normal;
             font-size: 3vw;
@@ -232,7 +261,7 @@
             </div>
         </div>
     </div>
-    
+
     <div class="white-section">
         <div class="white-box-container">
             <!-- First Line -->
@@ -240,7 +269,7 @@
                 <i class="fas fa-money-check-alt"></i>
                 <p>Deposit</p>
             </div>
-            <div class="white-box"  >
+            <div class="white-box">
                 <i class="fas fa-money-bill-wave-alt"></i>
                 <p>Withdraw</p>
             </div>
@@ -280,11 +309,11 @@
                 <i class="fas fa-hand-holding-usd"></i>
                 <p>Statement</p>
             </div>
-            
+
         </div>
     </div>
-    
-    
+
+
     <!-- <div class="footer">
         <div style="align-items: right;">
             <i class="fas fa-map-marker-alt footer-icon"></i>
@@ -319,7 +348,7 @@
         function boxClicked(boxNumber) {
             alert("Box " + boxNumber + " clicked!");
         }
-
     </script>
 </body>
+
 </html>
