@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Banking App Login</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.2/knockout-min.js"></script> <!-- Include Knockout.js library -->
     <style>
         /* Body Styles */
         body {
@@ -120,10 +121,10 @@
     <div class="login-container">
         <h2 style="color: #701e7d; font-family: 'Times New Roman', Times, serif; font-size: x-large;">Login</h2>
         <div class="input-group">
-            <input type="text" placeholder="Username">
+            <input type="text" placeholder="Username" data-bind="value: username">
         </div>
         <div class="input-group">
-            <input type="password" placeholder="Password">
+            <input type="password" placeholder="Password" data-bind="value: password">
         </div>
         <button class="btn-login" onclick="showLoader()">Login</button>
         <div class="forgot-password">Forgot Password?</div>
@@ -136,14 +137,22 @@
 
     <script>
         function showLoader() {
-    var loader = document.getElementById("loader");
-    loader.style.display = "flex"; // Show loader
-    setTimeout(function() {
-        // Redirect to the bankingClone page after login process (2 seconds delay)
-        window.location.href = "bankingAppClone.html";
-    }, 2000); // Adjust the time according to your needs (2 seconds in this example)
-}
+            var loader = document.getElementById("loader");
+            loader.style.display = "flex"; // Show loader
+            setTimeout(function() {
+                // Redirect to the bankingClone page after login process (2 seconds delay)
+                window.location.href = "bankingAppClone.html";
+            }, 2000); // Adjust the time according to your needs (2 seconds in this example)
+        }
 
+        // ViewModel for Knockout.js
+        function AppViewModel() {
+            this.username = ko.observable(""); // Observable for username
+            this.password = ko.observable(""); // Observable for password
+        }
+
+        // Apply bindings
+        ko.applyBindings(new AppViewModel());
     </script>
 
 </body>
