@@ -1,0 +1,110 @@
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column; 
+}
+.heading-box {
+    background-color: #701E7D;
+    border: 2px solid #f2f2f2;
+    border-radius: 10px;
+    padding: 10px;
+    max-width: 100%;
+    text-align: center;
+    margin-bottom: 20px; 
+    color: #f2f2f2;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+}
+.input-container {
+    text-align: center;
+    max-width: 80%;
+    width: 50%;
+}
+input[type="text"] {
+    padding: 10px;
+    border: 2px solid #9D3CBF; 
+    border-radius: 5px;
+    font-size: 16px;
+    margin-bottom: 10px;
+    width: 100%;
+    box-sizing: border-box;
+}
+button {
+    padding: 10px 20px;
+    background-color: #701E7D; 
+    color: #f2f2f2;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+.task-item {
+    color: #333; 
+    font-size: 18px;
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    list-style-type: none;
+}
+.task-item input[type="checkbox"] {
+    margin-right: 10px;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #9D3CBF; 
+    border-radius: 3px;
+    cursor: pointer;
+}
+.task-item input[type="checkbox"]:checked {
+    background-color: #701E7D; 
+    border-color: #0e0e0e; 
+}
+.task-item input[type="checkbox"]:checked::after {
+    content: "\2714";   
+    font-size: 14px;
+    color: #f2f2f2; 
+    display: block;
+    text-align: center;
+    line-height: 1;
+}
+.task-item span {
+    flex-grow: 1;
+    margin-left: 5px;
+}
+.delete-button {
+    padding: 5px 10px;
+    background-color: #9D3CBF; 
+    color: #f2f2f2;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+.delete-button:hover {
+    background-color: #701E7D;
+}
+.countTasks {
+    padding: 10px 20px;
+    margin-right: 10px;
+    background-color: #701E7D; 
+    color: #f2f2f2;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.tasks-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+@media only screen and (max-width: 600px) {
+    .heading-box, .input-container {
+        max-width: 90%;
+    }
+}

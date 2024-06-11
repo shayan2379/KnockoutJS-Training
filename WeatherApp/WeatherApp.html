@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather Dashboard</title>
     <link rel="stylesheet" href="styles.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <script src="https://ajax.aspnetcdn.com/ajax/knockout/knockout-3.1.0.js" type="text/javascript"></script>
 </head>
 
@@ -22,6 +24,9 @@
             <div class="temperature" data-bind="text: Math.round(weatherData().main.temp) + '°C'"></div>
             <div class="humidity" data-bind="text: 'Humidity: ' + weatherData().main.humidity + '%'"></div>
             <div class="wind-speed" data-bind="text: 'Wind Speed: ' + weatherData().wind.speed + ' m/s'"></div>
+            <div class="weather-icon" data-bind="if: weatherData">
+                <i class="fas" data-bind="css: iconClass"></i>
+            </div>
         </div>
         <div class="error" data-bind="if: errorMessage">
             <p data-bind="text: errorMessage"></p>
@@ -35,6 +40,7 @@
             self.searchQuery = ko.observable("");
             self.weatherData = ko.observable();
             self.errorMessage = ko.observable("");
+            self.iconClass = ko.observable("");
 
             self.search = function () {
                 var apiKey = '93aac5f7f014c2a47c711e19dc123c77';
@@ -52,6 +58,7 @@
                         .then(data => {
                             self.weatherData(data);
                             self.errorMessage("");
+                            self.setIconClass(data.weather[0].main);
                         })
                         .catch(error => {
                             self.errorMessage("City not found. Please try again.");
@@ -62,6 +69,24 @@
                     self.weatherData(null);
                 }
             };
+
+            self.setIconClass = function (weatherMain) {
+                switch (weatherMain.toLowerCase()) {
+                    case 'clouds':
+                        self.iconClass('fa-cloud');
+                        break;
+                    case 'clear':
+                        self.iconClass('fa-sun');
+                        break;
+                    case 'wind':
+                        self.iconClass('fa-wind');
+                        break;
+                    default:
+                        self.iconClass('');
+                }
+            };
+
+            
         }
 
         ko.applyBindings(new WeatherViewModel());
