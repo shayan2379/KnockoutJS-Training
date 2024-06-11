@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Dashboard</title>
+    <script src="https://ajax.aspnetcdn.com/ajax/knockout/knockout-3.1.0.js" type="text/javascript"></script>
+    <style>
+        /* Styles for Calculator */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f3f3f3;
+        }
+
+        .calculator {
+            max-width: 300px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .calculator input[type="button"] {
+            width: 50px;
+            height: 50px;
+            font-size: 18px;
+            margin: 5px;
+            border: none;
+            border-radius: 4px;
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .calculator input[type="button"]:hover {
+            background-color: #0056b3;
+        }
+
+        .calculator input[type="text"] {
+            width: calc(100% - 10px);
+            padding: 10px;
+            font-size: 18px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            -webkit-appearance: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="calculator">
+        <input type="text" data-bind="value: display" readonly>
+        <div>
+            <input type="button" value="7" data-bind="click: function() { appendNumber('7'); }">
+            <input type="button" value="8" data-bind="click: function() { appendNumber('8'); }">
+            <input type="button" value="9" data-bind="click: function() { appendNumber('9'); }">
+            <input type="button" value="/" data-bind="click: function() { appendOperator('/'); }">
+        </div>
+        <div>
+            <input type="button" value="4" data-bind="click: function() { appendNumber('4'); }">
+            <input type="button" value="5" data-bind="click: function() { appendNumber('5'); }">
+            <input type="button" value="6" data-bind="click: function() { appendNumber('6'); }">
+            <input type="button" value="*" data-bind="click: function() { appendOperator('*'); }">
+        </div>
+        <div>
+            <input type="button" value="1" data-bind="click: function() { appendNumber('1'); }">
+            <input type="button" value="2" data-bind="click: function() { appendNumber('2'); }">
+            <input type="button" value="3" data-bind="click: function() { appendNumber('3'); }">
+            <input type="button" value="-" data-bind="click: function() { appendOperator('-'); }">
+        </div>
+        <div>
+            <input type="button" value="0" data-bind="click: function() { appendNumber('0'); }">
+            <input type="button" value="." data-bind="click: appendDecimal">
+            <input type="button" value="=" data-bind="click: calculate">
+            <input type="button" value="+" data-bind="click: function() { appendOperator('+'); }">
+        </div>
+        <div>
+            <input type="button" value="C" data-bind="click: clear">
+        </div>
+    </div>
+
+    <script>
+        function CalculatorViewModel() {
+            var self = this;
+            self.display = ko.observable('0');
+            self.pendingValue = ko.observable(null);
+            self.pendingOperator = ko.observable(null);
+            self.pendingDecimal = ko.observable(false);
+
+            // Function to append a number to the display
+            self.appendNumber = function (value) {
+                if (self.display() === '0' || self.pendingOperator() !== null) {
+                    self.display(value);
+                } else {
+                    self.display(self.display() + value);
+                }
+                self.pendingOperator(null);
+            };
+
+            // Function to append a decimal point to the display
+            self.appendDecimal = function () {
+                if (!self.pendingDecimal()) {
+                    self.display(self.display() + '.');
+                    self.pendingDecimal(true);
+                }
+            };
+
+            // Function to append an operator to the display
+            self.appendOperator = function (operator) {
+                if (self.pendingOperator() === null) {
+                    self.pendingValue(parseFloat(self.display()));
+                    self.pendingOperator(operator);
+                    self.pendingDecimal(false);
+                }
+            };
+
+            // Function to perform the calculation
+            self.calculate = function () {
+                var result;
+                var currentValue = parseFloat(self.display());
+                switch (self.pendingOperator()) {
+                    case '+':
+                        result = self.pendingValue() + currentValue;
+                        break;
+                    case '-':
+                        result = self.pendingValue() - currentValue;
+                        break;
+                    case '*':
+                        result = self.pendingValue() * currentValue;
+                        break;
+                    case '/':
+                        result = self.pendingValue() / currentValue;
+                        break;
+                    default:
+                        result = currentValue;
+                }
+                self.display(result.toString());
+                self.pendingValue(null);
+                self.pendingOperator(null);
+            };
+
+            // Function to clear the display
+            self.clear = function () {
+                self.display('0');
+                self.pendingValue(null);
+                self.pendingOperator(null);
+                self.pendingDecimal(false);
+            };
+        }
+
+        ko.applyBindings(new CalculatorViewModel());
+    </script>
+
+</body>
+
+</html>
